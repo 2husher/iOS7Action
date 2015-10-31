@@ -10,4 +10,10 @@
 
 @interface THSWebViewController : UIViewController
 
+@property (nonatomic, strong) UIWebView *webView;
+
+- (void)dismissView;
+- (void)back;
+- (void)forward;
+
 @end

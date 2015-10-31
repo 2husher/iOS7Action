@@ -7,6 +7,7 @@
 //
 
 #import "THSWebViewController.h"
+#import "THSWebViewController+Interface.h"
 
 @interface THSWebViewController ()
 
@@ -18,34 +19,28 @@
 {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor redColor];
-
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.frame];
-    [self.view addSubview:webView];
+    [self addWebView];
+    [self addNavBar];
+    [self addTabBar];
 
     NSURLRequest *request = [NSURLRequest requestWithURL:
                              [NSURL URLWithString:@"http://en.wikipedia.org/wiki/Chuck_Norris"]];
-    [webView loadRequest:request];
-
-    CGFloat width = self.view.frame.size.width;
-    CGRect frame = CGRectMake(0.0f, 0.0f, width, 64.0f);
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:frame];
-
-    self.navigationItem.title = @"Chuck Norris";
-    [navBar pushNavigationItem:self.navigationItem animated:NO];
-
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back"
-                                                                             style:UIBarButtonItemStylePlain
-                                                                            target:self
-                                                                            action:@selector(dismissView)];
-
-    [self.view addSubview:navBar];
+    [self.webView loadRequest:request];
 }
 
 - (void)dismissView
 {
-    NSLog(@"Dismiss View");
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)back
+{
+    [self.webView goBack];
+}
+
+- (void)forward
+{
+    [self.webView goForward];
 }
 
 @end

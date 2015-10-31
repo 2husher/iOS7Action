@@ -8,8 +8,13 @@
 
 #import "THSViewController.h"
 #import "THSWebViewController.h"
+#import "THSHTTPCommunication.h"
+#import "THSViewController+Interface.h"
 
 @interface THSViewController ()
+{
+    NSNumber *jokeID;
+}
 
 @end
 
@@ -23,81 +28,61 @@
     [self addButtonVoteUp];
     [self addButtonVoteDown];
     [self addButtonChuckWho];
+
+    [self retrieveRandomJokes];
 }
 
-- (void)addLabel
+- (void)retrieveRandomJokes
 {
-    CGFloat width = self.view.frame.size.width - 40.0f;
-    CGFloat y = self.view.frame.size.height / 2.0f - 200.0f;
-    CGRect labelFrame = CGRectMake(20.0f, y, width, 200.0f);
-    UILabel *label = [[UILabel alloc] initWithFrame:labelFrame];
-    label.text = @"Quotation goes here and continues and continues until I am fed up to type.";
-    label.lineBreakMode = NSLineBreakByWordWrapping;
-    label.textAlignment = NSTextAlignmentCenter;
-    label.numberOfLines = 0;
-    label.font = [UIFont systemFontOfSize:16.0f];
+    THSHTTPCommunication *http = [[THSHTTPCommunication alloc] init];
+    NSURL *url = [NSURL URLWithString:@"http://api.icndb.com/jokes/random"];
 
-    [self.view addSubview:label];
-}
+    // получаем шутки, используя экземпляр класса THSHTTPCommunication
+    [http retrieveURL:url successBlock:^(NSData *response)
+    {
+        NSError *error = nil;
 
-- (void) addButtonVoteUp
-{
-    UIButton *voteUpButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [voteUpButton setTitle:@"Vote Up" forState:UIControlStateNormal];
-    CGFloat x = self.view.frame.size.width / 2.0 - 50.0f;
-    CGFloat y = self.view.frame.size.height / 2.0 + 0.0f;
-    voteUpButton.frame = CGRectMake(x, y, 100.0f, 50.0f);
-
-    [voteUpButton addTarget:self
-                     action:@selector(voteUp)
-           forControlEvents:UIControlEventTouchUpInside];
-
-    [self.view addSubview:voteUpButton];
-}
-
--(void) addButtonVoteDown
-{
-    UIButton *voteDownButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [voteDownButton setTitle:@"Vote Down" forState:UIControlStateNormal];
-    CGFloat x = self.view.frame.size.width / 2.0 - 50.0f;
-    CGFloat y = self.view.frame.size.height / 2.0 + 50.0f;
-    voteDownButton.frame = CGRectMake(x, y, 100.0f, 50.0f);
-
-    [voteDownButton addTarget:self
-                       action:@selector(voteDown)
-             forControlEvents:UIControlEventTouchUpInside];
-
-    [self.view addSubview:voteDownButton];
-}
-
-- (void)addButtonChuckWho
-{
-    UIButton *chuckWhoButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [chuckWhoButton setTitle:@"Chuck Who?" forState:UIControlStateNormal];
-    CGFloat x = self.view.frame.size.width / 2.0 - 50.0f;
-    CGFloat y = self.view.frame.size.height / 2.0 + 150.0f;
-    chuckWhoButton.frame = CGRectMake(x, y, 100.0f, 50.0f);
-
-    [chuckWhoButton addTarget:self
-                       action:@selector(chuckWho)
-             forControlEvents:UIControlEventTouchUpInside];
-
-    [self.view addSubview:chuckWhoButton];
+        // десериализуем полученную информацию
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:response
+                                                             options:0
+                                                               error:&error];
+        if (!error)
+        {
+            NSDictionary *value = data[@"value"];
+            if (value && value[@"joke"])
+            {
+                jokeID = value[@"id"];
+                [self.jokeLabel setText:value[@"joke"]];
+            }
+        }
+    }];
 }
 
 - (void)voteUp
 {
-    NSLog(@"Vote Up");
+    NSURL *url = [NSURL URLWithString:@"http://example.com/rater/vote"];
+    THSHTTPCommunication *http = [[THSHTTPCommunication alloc] init];
+    NSDictionary *params = @{@"joke_id":jokeID, @"vote":@(1)};
+    [http postURL:url params:params successBlock:^(NSData *response)
+     {
+         NSLog(@"Voted Up");
+     }];
 }
 
 - (void)voteDown
 {
-    NSLog(@"Vote Down");
+    NSURL *url = [NSURL URLWithString:@"http://example.com/rater/vote"];
+    THSHTTPCommunication *http = [[THSHTTPCommunication alloc] init];
+    NSDictionary *params = @{@"joke_id":jokeID, @"vote":@(-1)};
+    [http postURL:url params:params successBlock:^(NSData *response)
+     {
+         NSLog(@"Voted Down");
+     }];
+
 }
 
 - (void)chuckWho
 {
-    NSLog(@"Chuck Who?");
     THSWebViewController *webViewController = [[THSWebViewController alloc] init];
 
     [self presentViewController:webViewController animated:YES completion:nil];

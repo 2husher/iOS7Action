@@ -15,6 +15,8 @@
 		178DB2871BE3F9B6001530C6 /* ChuckNorrisRaterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 178DB2861BE3F9B6001530C6 /* ChuckNorrisRaterTests.m */; };
 		178DB2921BE4016C001530C6 /* THSHTTPCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 178DB2911BE4016C001530C6 /* THSHTTPCommunication.m */; };
 		178DB2951BE424C6001530C6 /* THSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 178DB2941BE424C6001530C6 /* THSWebViewController.m */; };
+		17EE8A4B1BE4ED25001883E4 /* THSViewController+Interface.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EE8A4A1BE4ED25001883E4 /* THSViewController+Interface.m */; };
+		17EE8A4E1BE505A7001883E4 /* THSWebViewController+Interface.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EE8A4D1BE505A7001883E4 /* THSWebViewController+Interface.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,10 @@
 		178DB2911BE4016C001530C6 /* THSHTTPCommunication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSHTTPCommunication.m; sourceTree = "<group>"; };
 		178DB2931BE424C6001530C6 /* THSWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSWebViewController.h; sourceTree = "<group>"; };
 		178DB2941BE424C6001530C6 /* THSWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSWebViewController.m; sourceTree = "<group>"; };
+		17EE8A491BE4ED25001883E4 /* THSViewController+Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "THSViewController+Interface.h"; sourceTree = "<group>"; };
+		17EE8A4A1BE4ED25001883E4 /* THSViewController+Interface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "THSViewController+Interface.m"; sourceTree = "<group>"; };
+		17EE8A4C1BE505A7001883E4 /* THSWebViewController+Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "THSWebViewController+Interface.h"; sourceTree = "<group>"; };
+		17EE8A4D1BE505A7001883E4 /* THSWebViewController+Interface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "THSWebViewController+Interface.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,10 +95,14 @@
 				178DB26F1BE3F9B5001530C6 /* THSAppDelegate.m */,
 				178DB2711BE3F9B5001530C6 /* THSViewController.h */,
 				178DB2721BE3F9B5001530C6 /* THSViewController.m */,
+				17EE8A491BE4ED25001883E4 /* THSViewController+Interface.h */,
+				17EE8A4A1BE4ED25001883E4 /* THSViewController+Interface.m */,
 				178DB2901BE4016C001530C6 /* THSHTTPCommunication.h */,
 				178DB2911BE4016C001530C6 /* THSHTTPCommunication.m */,
 				178DB2931BE424C6001530C6 /* THSWebViewController.h */,
 				178DB2941BE424C6001530C6 /* THSWebViewController.m */,
+				17EE8A4C1BE505A7001883E4 /* THSWebViewController+Interface.h */,
+				17EE8A4D1BE505A7001883E4 /* THSWebViewController+Interface.m */,
 				178DB2771BE3F9B5001530C6 /* Images.xcassets */,
 				178DB2791BE3F9B5001530C6 /* LaunchScreen.xib */,
 				178DB26A1BE3F9B5001530C6 /* Supporting Files */,
@@ -227,8 +237,10 @@
 			files = (
 				178DB2731BE3F9B5001530C6 /* THSViewController.m in Sources */,
 				178DB2701BE3F9B5001530C6 /* THSAppDelegate.m in Sources */,
+				17EE8A4B1BE4ED25001883E4 /* THSViewController+Interface.m in Sources */,
 				178DB2921BE4016C001530C6 /* THSHTTPCommunication.m in Sources */,
 				178DB26D1BE3F9B5001530C6 /* main.m in Sources */,
+				17EE8A4E1BE505A7001883E4 /* THSWebViewController+Interface.m in Sources */,
 				178DB2951BE424C6001530C6 /* THSWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,6 +428,7 @@
 				178DB28C1BE3F9B6001530C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		178DB28D1BE3F9B6001530C6 /* Build configuration list for PBXNativeTarget "ChuckNorrisRaterTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +437,7 @@
 				178DB28F1BE3F9B6001530C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -10,4 +10,10 @@
 
 @interface THSViewController : UIViewController
 
+@property (nonatomic, strong) UILabel *jokeLabel;
+
+- (void)voteUp;
+- (void)voteDown;
+- (void)chuckWho;
+
 @end

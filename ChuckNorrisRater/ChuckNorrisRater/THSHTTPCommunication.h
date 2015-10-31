@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface THSHTTPCommunication : NSObject
+@interface THSHTTPCommunication : NSObject <NSURLSessionDownloadDelegate>
+
+- (void)retrieveURL:(NSURL *)url successBlock:(void(^)(NSData *))successBlock;
+- (void)postURL:(NSURL *)url params:(NSDictionary *)params
+   successBlock:(void(^)(NSData *))successBlock;
 
 @end
